@@ -50,6 +50,12 @@ public class ApplicationState implements IApplicationState {
         activeMouseMode = uiModule.getDialogResponse(dialogProvider.getChooseStartAndEndPointModeDialog());
     }
 
+    public void undoCommand() { 	
+    }
+    
+    public void redoCommand() { 	
+    }
+    
     @Override
     public ShapeType getActiveShapeType() {
         return activeShapeType;
