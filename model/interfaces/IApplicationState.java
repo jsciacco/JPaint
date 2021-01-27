@@ -15,10 +15,6 @@ public interface IApplicationState {
     void setActiveShadingType();
 
     void setActiveStartAndEndPointMode();
-    
-    void undoCommand();
-	
-	void redoCommand();
 
     ShapeType getActiveShapeType();
 
@@ -29,6 +25,4 @@ public interface IApplicationState {
     ShapeShadingType getActiveShapeShadingType();
 
     MouseMode getActiveMouseMode();
-
-	
 }
