@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import controller.myPoint;
 import model.interfaces.IApplicationState;
@@ -9,7 +10,7 @@ import model.interfaces.IShape;
 import model.interfaces.IUndoable;
 import view.interfaces.PaintCanvasBase;
 
-public class CreateShapeCommand implements ICommand, IUndoable, IShape{
+public class SelectShapeCommand implements ICommand, IUndoable, IShape{
 
 	public ShapeType shapeType;
 	public myPoint startPoint, endPoint;
@@ -20,7 +21,7 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 	public static IShape shape;
 	public ShapeDraw shapeDraw;
 
-	public CreateShapeCommand(PaintCanvasBase paintCanvas, IApplicationState appState, myPoint startPoint, myPoint endPoint) {	
+	public SelectShapeCommand(PaintCanvasBase paintCanvas, IApplicationState appState, myPoint startPoint, myPoint endPoint) {	
 		this.paintCanvas = paintCanvas;
 		this.appState = appState;
 		this.startPoint = startPoint;
@@ -31,27 +32,26 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 		// TODO Auto-generated method stub
 		startX = startPoint.getX();
 		startY = startPoint.getY();
-		endX = endPoint.getX();
+		endX = endPoint.getY();
 		endY = endPoint.getY();
 		height = (endPoint.getY()-startPoint.getY());
 		width = (endPoint.getX()-startPoint.getX());
-		shape = ShapeFactory.shapeWorks(appState, startPoint, endPoint);
 		shapeDraw = new ShapeDraw(paintCanvas);
 		shapeList = new ShapeList(shapeDraw);
-		shapeList.addShape(shape);
+		shapeList.checkList(startPoint, endPoint);
 		CommandHistory.add(this);
 	}
 
 	@Override
 	public void undo() {
 		// TODO Auto-generated method stub
-		shapeList.removeShape(shape);
+		shapeList.undoMove();
 	}
 
 	@Override
 	public void redo() {
 		// TODO Auto-generated method stub
-		shapeList.addShape(shape);
+		shapeList.redoMove();
 	}
 
 	@Override
@@ -67,13 +67,13 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 	@Override
 	public int getEndX() {
 		// TODO Auto-generated method stub
-		return endX;
+		return 0;
 	}
 
 	@Override
 	public int getEndY() {
 		// TODO Auto-generated method stub
-		return endY;
+		return 0;
 	}
 
 	@Override
@@ -85,7 +85,6 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 	public int getWidth() {
 		return width;
 	}
-
 
 	@Override
 	public ShapeColor getPrimaryColor() {
@@ -141,7 +140,6 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 		// TODO Auto-generated method stub
 
 	}
-
-
-
 }
+
+//collision detection algorithm: only needs to intersect, not contain

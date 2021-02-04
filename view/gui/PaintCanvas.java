@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class PaintCanvas extends PaintCanvasBase {
 
-    public Graphics2D getGraphics2D() {
-        return (Graphics2D)getGraphics();
-    }
+	public Graphics2D getGraphics2D() {
+		return (Graphics2D)getGraphics();
+	}
 }

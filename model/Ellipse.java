@@ -10,7 +10,7 @@ import model.interfaces.IApplicationState;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 
-public class Rectangle implements IShape {
+public class Ellipse implements IShape {
 
 	public myPoint startPoint,endPoint;
 	public IApplicationState appState;
@@ -21,7 +21,7 @@ public class Rectangle implements IShape {
 	public int startX, startY;
 
 
-	public Rectangle(IApplicationState appState, myPoint startPoint, myPoint endPoint) {
+	public Ellipse(IApplicationState appState, myPoint startPoint, myPoint endPoint) {
 		this.appState = appState;
 		this.startPoint = startPoint;
 		this.endPoint = endPoint;
@@ -55,7 +55,6 @@ public class Rectangle implements IShape {
 		// TODO Auto-generated method stub
 		this.startY = deltaY;
 	}
-
 	@Override
 	public int getEndX() {
 		// TODO Auto-generated method stub
@@ -124,23 +123,22 @@ public class Rectangle implements IShape {
 
 		case FILLED_IN:
 			graphics2d.setColor(firstColor);
-			graphics2d.fillRect(x, y, width, height);
+			graphics2d.fillOval(x, y, width, height);
 			break;
 		case OUTLINE:
 			graphics2d.setStroke(new BasicStroke(9));
 			graphics2d.setColor(firstColor);
-			graphics2d.drawRect(x, y, width, height);
+			graphics2d.drawOval(x, y, width, height);
 			break;
 		case OUTLINE_AND_FILLED_IN:
 			graphics2d.setStroke(new BasicStroke(9));
 			graphics2d.setColor(secondColor);
-			graphics2d.drawRect(x, y, width, height);
+			graphics2d.drawOval(x, y, width, height);
 			graphics2d.setColor(firstColor);
-			graphics2d.fillRect(x, y, width, height);
+			graphics2d.fillOval(x, y, width, height);
 			break;
 		}
 	}
-
 
 	// Filled in rectangle
 	//Graphics2D graphics2d = paintCanvas.getGraphics2D();

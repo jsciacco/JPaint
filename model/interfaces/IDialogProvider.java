@@ -8,13 +8,13 @@ import view.interfaces.IDialogChoice;
 
 public interface IDialogProvider {
 
-    IDialogChoice<ShapeType> getChooseShapeDialog();
+	IDialogChoice<ShapeType> getChooseShapeDialog();
 
-    IDialogChoice<ShapeColor> getChoosePrimaryColorDialog();
+	IDialogChoice<ShapeColor> getChoosePrimaryColorDialog();
 
-    IDialogChoice<ShapeColor> getChooseSecondaryColorDialog();
+	IDialogChoice<ShapeColor> getChooseSecondaryColorDialog();
 
-    IDialogChoice<ShapeShadingType> getChooseShadingTypeDialog();
+	IDialogChoice<ShapeShadingType> getChooseShadingTypeDialog();
 
-    IDialogChoice<MouseMode> getChooseStartAndEndPointModeDialog();
+	IDialogChoice<MouseMode> getChooseStartAndEndPointModeDialog();
 }

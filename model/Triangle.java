@@ -10,7 +10,7 @@ import model.interfaces.IApplicationState;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 
-public class Rectangle implements IShape {
+public class Triangle implements IShape {
 
 	public myPoint startPoint,endPoint;
 	public IApplicationState appState;
@@ -21,7 +21,7 @@ public class Rectangle implements IShape {
 	public int startX, startY;
 
 
-	public Rectangle(IApplicationState appState, myPoint startPoint, myPoint endPoint) {
+	public Triangle(IApplicationState appState, myPoint startPoint, myPoint endPoint) {
 		this.appState = appState;
 		this.startPoint = startPoint;
 		this.endPoint = endPoint;
@@ -119,24 +119,26 @@ public class Rectangle implements IShape {
 		Color firstColor = primaryColor.getColor();
 		Color secondColor = secondaryColor.getColor();
 		Graphics2D graphics2d = paintCanvas.getGraphics2D();
+		int xArray[] = {startPoint.getX(),endPoint.getX(),startPoint.getX()};
+		int yArray[] = {startPoint.getY(),endPoint.getY(),endPoint.getY()};
 
 		switch(shadingType) {
 
 		case FILLED_IN:
 			graphics2d.setColor(firstColor);
-			graphics2d.fillRect(x, y, width, height);
+			graphics2d.fillPolygon(xArray, yArray, 3);
 			break;
 		case OUTLINE:
 			graphics2d.setStroke(new BasicStroke(9));
 			graphics2d.setColor(firstColor);
-			graphics2d.drawRect(x, y, width, height);
+			graphics2d.drawPolygon(xArray, yArray, 3);
 			break;
 		case OUTLINE_AND_FILLED_IN:
 			graphics2d.setStroke(new BasicStroke(9));
 			graphics2d.setColor(secondColor);
-			graphics2d.drawRect(x, y, width, height);
+			graphics2d.drawPolygon(xArray, yArray, 3);
 			graphics2d.setColor(firstColor);
-			graphics2d.fillRect(x, y, width, height);
+			graphics2d.fillPolygon(xArray, yArray, 3);
 			break;
 		}
 	}
@@ -160,3 +162,15 @@ public class Rectangle implements IShape {
 
 	// if outline only, graphics2d.draw, if filled in, graphics2d.draw
 }
+
+//recommendation right triangle
+
+//three parameters : x array y array number of points (3)
+//xarray[3] = 10(startpointx),40(endpoint x),10(startpoint x)
+//yarray[3] = 30(startpoint y),50(endpoint y),50(endpoint y)
+//drawpolygon(x,y,3)
+//startpoint x, endpoint y = 3rd point in array
+
+//mapping colors, 1st way public static switch statements, 2nd way enum map
+//EnumMap<ShapeColor, java.awt.Color> map = new EnumMap<ShapeColor, Color>(ShapeColor.class);
+//Can put in main, then pass around -> map.put(ShapeColor.BLUE, Color.Blue);

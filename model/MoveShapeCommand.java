@@ -9,7 +9,7 @@ import model.interfaces.IShape;
 import model.interfaces.IUndoable;
 import view.interfaces.PaintCanvasBase;
 
-public class CreateShapeCommand implements ICommand, IUndoable, IShape{
+public class MoveShapeCommand implements ICommand, IUndoable, IShape{
 
 	public ShapeType shapeType;
 	public myPoint startPoint, endPoint;
@@ -20,7 +20,7 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 	public static IShape shape;
 	public ShapeDraw shapeDraw;
 
-	public CreateShapeCommand(PaintCanvasBase paintCanvas, IApplicationState appState, myPoint startPoint, myPoint endPoint) {	
+	public MoveShapeCommand(PaintCanvasBase paintCanvas, IApplicationState appState, myPoint startPoint, myPoint endPoint) {	
 		this.paintCanvas = paintCanvas;
 		this.appState = appState;
 		this.startPoint = startPoint;
@@ -35,23 +35,22 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 		endY = endPoint.getY();
 		height = (endPoint.getY()-startPoint.getY());
 		width = (endPoint.getX()-startPoint.getX());
-		shape = ShapeFactory.shapeWorks(appState, startPoint, endPoint);
 		shapeDraw = new ShapeDraw(paintCanvas);
 		shapeList = new ShapeList(shapeDraw);
-		shapeList.addShape(shape);
+		shapeList.moveList(startPoint, endPoint);
 		CommandHistory.add(this);
 	}
 
 	@Override
 	public void undo() {
 		// TODO Auto-generated method stub
-		shapeList.removeShape(shape);
+		shapeList.undoMove();
 	}
 
 	@Override
 	public void redo() {
 		// TODO Auto-generated method stub
-		shapeList.addShape(shape);
+		shapeList.redoMove();
 	}
 
 	@Override

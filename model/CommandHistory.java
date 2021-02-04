@@ -11,7 +11,7 @@ class CommandHistory {
 		undoStack.push(cmd);
 		redoStack.clear();
 	}
-	
+
 	public static boolean undo() {
 		boolean result = !undoStack.empty();
 		if (result) {
