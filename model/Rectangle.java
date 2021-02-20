@@ -18,21 +18,20 @@ public class Rectangle implements IShape {
 	public ShapeColor primaryColor;
 	public ShapeColor secondaryColor;
 	public ShapeShadingType shadingType;
-	public int startX, startY;
+	public int startX, startY, endX, endY, width, height;
 
-
-	public Rectangle(IApplicationState appState, myPoint startPoint, myPoint endPoint) {
-		this.appState = appState;
+	public Rectangle(ShapeColor primaryColor, ShapeColor secondaryColor, ShapeShadingType shadingType, myPoint startPoint, myPoint endPoint) {
+		this.primaryColor = primaryColor;
+		this.secondaryColor = secondaryColor;
+		this.shadingType = shadingType;
 		this.startPoint = startPoint;
 		this.endPoint = endPoint;
 		startX = startPoint.getX();
-		startY = startPoint.getY();
-		primaryColor = appState.getActivePrimaryColor();
-		System.out.println(primaryColor);
-		secondaryColor = appState.getActiveSecondaryColor();
-		System.out.println(secondaryColor);
-		shadingType = appState.getActiveShapeShadingType();
-		System.out.println(shadingType);
+		startY = startPoint.getY();	
+		endX = endPoint.getX();
+		endY = endPoint.getY();
+		width = endPoint.getX()-startPoint.getX();
+		height = endPoint.getY()-startPoint.getY();
 	}
 	@Override
 	public int getStartX() {
@@ -55,52 +54,71 @@ public class Rectangle implements IShape {
 		// TODO Auto-generated method stub
 		this.startY = deltaY;
 	}
-
 	@Override
 	public int getEndX() {
 		// TODO Auto-generated method stub
-		return endPoint.getX();
+		return endX;
 	}
 	@Override
 	public int getEndY() {
 		// TODO Auto-generated method stub
-		return endPoint.getY();
+		return endY;
+	}
+	
+	@Override
+	public void setEndX(int deltaX) {
+		// TODO Auto-generated method stub
+		this.endX = deltaX;
+	}
+	@Override
+	public void setEndY(int deltaY) {
+		// TODO Auto-generated method stub
+		this.endY = deltaY;
 	}
 
 	@Override
 	public int getWidth() {
 		// TODO Auto-generated method stub
-		return (endPoint.getX()-startPoint.getX());
+		return width;
 	}
 
 	@Override
 	public int getHeight() {
 		// TODO Auto-generated method stub
-		return (endPoint.getY()-startPoint.getY());
+		return height;
 	}
-
+	
+	public void setWidth(int deltaW) {
+		// TODO Auto-generated method stub
+		this.width = deltaW;
+	}
+	@Override
+	public void setHeight(int deltaH) {
+		// TODO Auto-generated method stub
+		this.height = deltaH;
+	}
 	@Override
 	public ShapeColor getPrimaryColor() {
 		// TODO Auto-generated method stub
-		return appState.getActivePrimaryColor();
+		return primaryColor;
 	}
 
 	@Override
 	public ShapeColor getSecondaryColor() {
 		// TODO Auto-generated method stub
-		return appState.getActiveSecondaryColor();
+		return secondaryColor;
 	}
 
 	@Override
 	public ShapeShadingType getshapeShadingType() {
 		// TODO Auto-generated method stub
-		return appState.getActiveShapeShadingType();
+		return shadingType;
 	}
 
 	@Override
 	public ShapeType getShapeType() {
 		// TODO Auto-generated method stub
-		return appState.getActiveShapeType();
+		return ShapeType.RECTANGLE;
 	}
 
 	@Override
@@ -114,7 +132,7 @@ public class Rectangle implements IShape {
 	}
 
 	@Override
-	public void draw(PaintCanvasBase paintCanvas, int x, int y, int height, int width) {
+	public void draw(PaintCanvasBase paintCanvas, int xStart, int yStart, int xEnd, int yEnd, int h, int w) {
 		// TODO Auto-generated method stub
 		Color firstColor = primaryColor.getColor();
 		Color secondColor = secondaryColor.getColor();
@@ -124,21 +142,30 @@ public class Rectangle implements IShape {
 
 		case FILLED_IN:
 			graphics2d.setColor(firstColor);
-			graphics2d.fillRect(x, y, width, height);
+			graphics2d.fillRect(xStart, yStart, w, h);
 			break;
 		case OUTLINE:
 			graphics2d.setStroke(new BasicStroke(9));
 			graphics2d.setColor(firstColor);
-			graphics2d.drawRect(x, y, width, height);
+			graphics2d.drawRect(xStart, yStart, w, h);
 			break;
 		case OUTLINE_AND_FILLED_IN:
 			graphics2d.setStroke(new BasicStroke(9));
 			graphics2d.setColor(secondColor);
-			graphics2d.drawRect(x, y, width, height);
+			graphics2d.drawRect(xStart, yStart, w, h);
 			graphics2d.setColor(firstColor);
-			graphics2d.fillRect(x, y, width, height);
+			graphics2d.fillRect(xStart, yStart, w, h);
 			break;
 		}
+	}
+	@Override
+	public void drawOutline(PaintCanvasBase paintCanvas, int xStart, int yStart, int xEnd, int yEnd, int h, int w) {
+		// TODO Auto-generated method stub
+		Graphics2D graphics2d = paintCanvas.getGraphics2D();
+		
+		graphics2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0));
+		graphics2d.setColor(Color.BLACK);
+		graphics2d.drawRect(xStart, yStart, w, h);
 	}
 
 

@@ -23,5 +23,10 @@ public interface IShape {
 	void setStartY(int deltaY);
 	void addShape(IShape shape);
 	void removeShape(IShape shape);
-	void draw(PaintCanvasBase paintcanvas, int x, int y, int height, int width);
+	void draw(PaintCanvasBase paintcanvas, int startX, int startY, int endX, int endY, int height, int width);
+	void drawOutline(PaintCanvasBase paintCanvas, int startX, int startY, int endX, int endY, int height, int width);
+	void setEndX(int deltaX);
+	void setEndY(int deltaY);
+	void setWidth(int deltaW);
+	void setHeight(int deltaH);
 }

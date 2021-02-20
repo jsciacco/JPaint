@@ -7,6 +7,7 @@ import model.MouseMode;
 import model.dialogs.DialogProvider;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
+import model.interfaces.IShape;
 import view.interfaces.IUiModule;
 
 public class ApplicationState implements IApplicationState {
@@ -18,6 +19,7 @@ public class ApplicationState implements IApplicationState {
 	private ShapeColor activeSecondaryColor;
 	private ShapeShadingType activeShapeShadingType;
 	private MouseMode activeMouseMode;
+	private IShape shape;
 
 	public ApplicationState(IUiModule uiModule) {
 		this.uiModule = uiModule;

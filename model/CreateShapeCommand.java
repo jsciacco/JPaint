@@ -19,6 +19,8 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 	public PaintCanvasBase paintCanvas;
 	public static IShape shape;
 	public ShapeDraw shapeDraw;
+	public static ShapeColor primaryColor, secondaryColor;
+	public static ShapeShadingType shadingType;
 
 	public CreateShapeCommand(PaintCanvasBase paintCanvas, IApplicationState appState, myPoint startPoint, myPoint endPoint) {	
 		this.paintCanvas = paintCanvas;
@@ -35,23 +37,33 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 		endY = endPoint.getY();
 		height = (endPoint.getY()-startPoint.getY());
 		width = (endPoint.getX()-startPoint.getX());
-		shape = ShapeFactory.shapeWorks(appState, startPoint, endPoint);
+		//shape = ShapeFactory.shapeWorks(appState, startPoint, endPoint);
+		shapeType = appState.getActiveShapeType();
+		System.out.println(shapeType);
+		primaryColor = appState.getActivePrimaryColor();
+		System.out.println(primaryColor);
+		secondaryColor = appState.getActiveSecondaryColor();
+		System.out.println(secondaryColor);
+		shadingType = appState.getActiveShapeShadingType();
+		System.out.println(shadingType);
+		shape = ShapeFactory.shapeWorks(shapeType, primaryColor, secondaryColor, shadingType, startPoint, endPoint);
 		shapeDraw = new ShapeDraw(paintCanvas);
 		shapeList = new ShapeList(shapeDraw);
-		shapeList.addShape(shape);
+		ShapeList.addShape(shape);
 		CommandHistory.add(this);
 	}
 
 	@Override
 	public void undo() {
 		// TODO Auto-generated method stub
-		shapeList.removeShape(shape);
+		ShapeList.removeShape(shape);
 	}
 
 	@Override
 	public void redo() {
 		// TODO Auto-generated method stub
-		shapeList.addShape(shape);
+		ShapeList.addShape(shape);
+		CommandHistory.add(this);
 	}
 
 	@Override
@@ -123,12 +135,6 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 
 	}
 
-	@Override
-	public void draw(PaintCanvasBase paintcanvas, int x, int y, int height, int width) {
-		// TODO Auto-generated method stub
-		Graphics2D graphics2d = paintCanvas.getGraphics2D();
-		graphics2d.fillRect(x, y, width, height);
-	}
 
 	@Override
 	public void setStartX(int deltaX) {
@@ -142,6 +148,40 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 
 	}
 
+	@Override
+	public void draw(PaintCanvasBase paintcanvas, int startX, int startY, int endX, int endY, int height, int width) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void drawOutline(PaintCanvasBase paintCanvas, int startX, int startY, int endX, int endY, int height,
+			int width) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void setEndX(int deltaX) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setEndY(int deltaY) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setWidth(int deltaW) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setHeight(int deltaH) {
+		// TODO Auto-generated method stub
+		
+	}
 }

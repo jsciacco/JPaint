@@ -122,12 +122,6 @@ public class SelectShapeCommand implements ICommand, IUndoable, IShape{
 
 	}
 
-	@Override
-	public void draw(PaintCanvasBase paintcanvas, int x, int y, int height, int width) {
-		// TODO Auto-generated method stub
-		Graphics2D graphics2d = paintCanvas.getGraphics2D();
-		graphics2d.fillRect(x, y, width, height);
-	}
 
 	@Override
 	public void setStartX(int deltaX) {
@@ -140,6 +134,44 @@ public class SelectShapeCommand implements ICommand, IUndoable, IShape{
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public void draw(PaintCanvasBase paintcanvas, int startX, int startY, int endX, int endY, int height, int width) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drawOutline(PaintCanvasBase paintCanvas, int startX, int startY, int endX, int endY, int height,
+			int width) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setEndX(int deltaX) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setEndY(int deltaY) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setWidth(int deltaW) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setHeight(int deltaH) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
 //collision detection algorithm: only needs to intersect, not contain

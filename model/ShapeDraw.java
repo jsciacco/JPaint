@@ -5,10 +5,9 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import model.interfaces.IShape;
-import model.interfaces.IShapeDraw;
 import view.interfaces.PaintCanvasBase;
 
-public class ShapeDraw implements IShapeDraw {
+public class ShapeDraw {
 
 	PaintCanvasBase paintCanvas;
 
@@ -32,12 +31,47 @@ public class ShapeDraw implements IShapeDraw {
 
 		for (IShape shape: shapeList) {
 
-			int x = shape.getStartX();
-			int y = shape.getStartY();
+			int startX = shape.getStartX();
+			int startY = shape.getStartY();
+			int endX = shape.getEndX();
+			int endY = shape.getEndY();
 			int height = shape.getHeight();
 			int width = shape.getWidth();
 
-			shape.draw(paintCanvas, x, y, height, width);
+			shape.draw(paintCanvas, startX, startY, endX, endY, height, width);
+		}
+	}
+	
+	public void drawBorder(ArrayList<IShape>shapeList, ArrayList<IShape>selectShapeList) {
+
+		int selectListCount = selectShapeList.size();
+
+		System.out.println(selectListCount);
+		
+		blankCanvas(paintCanvas);
+
+		for (IShape shape: shapeList) {
+
+			int startX = shape.getStartX();
+			int startY = shape.getStartY();
+			int endX = shape.getEndX();
+			int endY = shape.getEndY();
+			int height = shape.getHeight();
+			int width = shape.getWidth();
+
+			shape.draw(paintCanvas, startX, startY, endX, endY, height, width);
+		}
+
+		for (IShape shape: selectShapeList) {
+
+			int startX = shape.getStartX()-5;
+			int startY = shape.getStartY()-5;
+			int endX = shape.getEndX()+5;
+			int endY = shape.getEndY()+5;
+			int height = shape.getHeight()+10;
+			int width = shape.getWidth()+10;
+
+			shape.drawOutline(paintCanvas, startX, startY, endX, endY, height, width);
 		}
 	}
 }
