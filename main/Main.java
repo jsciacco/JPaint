@@ -29,7 +29,6 @@ public class Main {
 		IJPaintController controller = new JPaintController(uiModule, appState);
 		controller.setup();
 
-		// For example purposes only; remove all lines below from your final project.
 		paintCanvas.addMouseListener(new MyMouseHandler(paintCanvas, appState));
 
 		try {
