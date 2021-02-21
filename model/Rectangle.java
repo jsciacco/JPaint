@@ -184,6 +184,4 @@ public class Rectangle implements IShape {
 	//graphics2d.setStroke(stroke);
 	//graphics2d.setColor(Color.BLACK);
 	//graphics2d.drawRect(7, 8, 210, 410);
-
-	// if outline only, graphics2d.draw, if filled in, graphics2d.draw
 }
