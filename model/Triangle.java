@@ -154,12 +154,12 @@ public class Triangle implements IShape {
 			graphics2d.fillPolygon(xArray, yArray, 3);
 			break;
 		case OUTLINE:
-			graphics2d.setStroke(new BasicStroke(9));
+			graphics2d.setStroke(new BasicStroke(5));
 			graphics2d.setColor(firstColor);
 			graphics2d.drawPolygon(xArray, yArray, 3);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2d.setStroke(new BasicStroke(9));
+			graphics2d.setStroke(new BasicStroke(5));
 			graphics2d.setColor(secondColor);
 			graphics2d.drawPolygon(xArray, yArray, 3);
 			graphics2d.setColor(firstColor);

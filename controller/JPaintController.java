@@ -2,9 +2,11 @@ package controller;
 
 import model.CopyCommand;
 import model.DeleteCommand;
+import model.GroupCommand;
 import model.PasteCommand;
 import model.RedoCommand;
 import model.UndoCommand;
+import model.UngroupCommand;
 import model.interfaces.IApplicationState;
 import view.EventName;
 import view.interfaces.IUiModule;
@@ -34,5 +36,7 @@ public class JPaintController implements IJPaintController {
 		uiModule.addEvent(EventName.COPY, () -> new CopyCommand().run());
 		uiModule.addEvent(EventName.PASTE, () -> new PasteCommand().run());
 		uiModule.addEvent(EventName.DELETE, () -> new DeleteCommand().run());
+		uiModule.addEvent(EventName.GROUP, () -> new GroupCommand().run());
+		uiModule.addEvent(EventName.UNGROUP, () -> new UngroupCommand().run());
 	}
 }

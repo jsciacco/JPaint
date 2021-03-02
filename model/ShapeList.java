@@ -22,6 +22,8 @@ public class ShapeList implements IShapeList{
 	public static ArrayList<IShape> copyShapeList = new ArrayList<IShape>();
 	
 	public static ArrayList<IShape> deleteShapeList = new ArrayList<IShape>();
+	
+	public static ArrayList<IShape> groupShapeList = new ArrayList<IShape>();
 
 	static int listCount = shapeList.size();
 	int selectListCount = selectShapeList.size();
@@ -112,6 +114,9 @@ public class ShapeList implements IShapeList{
 	public static void removeShape(IShape shape) {
 		// TODO Auto-generated method stub
 		shapeList.remove(shape);
+		if (selectShapeList.contains(shape)) {
+		selectShapeList.remove(shape);
+		}
 		System.out.println(listCount);
 		if (selectShapeList.isEmpty()) {
 			shapeDraw.reDraw(shapeList);

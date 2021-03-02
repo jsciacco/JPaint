@@ -145,12 +145,12 @@ public class Rectangle implements IShape {
 			graphics2d.fillRect(xStart, yStart, w, h);
 			break;
 		case OUTLINE:
-			graphics2d.setStroke(new BasicStroke(9));
+			graphics2d.setStroke(new BasicStroke(5));
 			graphics2d.setColor(firstColor);
 			graphics2d.drawRect(xStart, yStart, w, h);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2d.setStroke(new BasicStroke(9));
+			graphics2d.setStroke(new BasicStroke(5));
 			graphics2d.setColor(secondColor);
 			graphics2d.drawRect(xStart, yStart, w, h);
 			graphics2d.setColor(firstColor);
