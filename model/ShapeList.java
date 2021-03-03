@@ -23,6 +23,8 @@ public class ShapeList implements IShapeList{
 	
 	public static ArrayList<IShape> deleteShapeList = new ArrayList<IShape>();
 	
+	public static ArrayList<ArrayList<IShape>> groupShapeListArray = new ArrayList<ArrayList<IShape>>();
+	
 	public static ArrayList<IShape> groupShapeList = new ArrayList<IShape>();
 
 	static int listCount = shapeList.size();
@@ -93,6 +95,17 @@ public class ShapeList implements IShapeList{
 		shapeDraw.drawBorder(shapeList, selectShapeList);
 	}
 	
+	public static void groupList(ArrayList<IShape>groupList) {
+		groupShapeList.clear();
+		for (IShape shape: groupList) {
+			groupShapeList.add(shape);
+		}
+		groupShapeListArray.add(groupShapeList);
+		selectShapeList.clear();
+		shapeDraw.drawGroupBorder(shapeList, selectShapeList, groupShapeListArray);
+		System.out.println(groupShapeListArray.size());
+		
+	}
 	public static void addShape(IShape shape) {
 		shapeList.add(shape);
 		System.out.println(listCount);
