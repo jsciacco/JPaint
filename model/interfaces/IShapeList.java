@@ -7,4 +7,5 @@ public interface IShapeList {
 	}
 	void undoMove();
 	void redoMove();
+	
 }

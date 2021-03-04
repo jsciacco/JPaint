@@ -21,13 +21,16 @@ public class GroupCommand implements ICommand, IUndoable{
 	@Override
 	public void undo() {
 		// TODO Auto-generated method stub
-		
+		groupShapeList = ShapeList.getSelect();
+		ShapeList.unGroupList(groupShapeList);
 	}
 
 	@Override
 	public void redo() {
 		// TODO Auto-generated method stub
-		
+		groupShapeList = ShapeList.getSelect();
+		ShapeList.groupList(groupShapeList);
+		CommandHistory.add(this);
 	}
 
 	
