@@ -135,11 +135,11 @@ public class ShapeDraw {
 					groupList.add(shape);
 				}
 			}
-			else {
-				graphics2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0));
-				graphics2d.setColor(Color.ORANGE);
-				graphics2d.drawRect(xStart, yStart, groupWidth, groupHeight);
-			}
+			//else {
+			//	graphics2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0));
+			//	graphics2d.setColor(Color.ORANGE);
+			//	graphics2d.drawRect(xStart, yStart, groupWidth, groupHeight);
+			//}
 		}
 		for (IShape shape: selectShapeList) {
 			
@@ -156,57 +156,57 @@ public class ShapeDraw {
 		}			
 	}
 		
-	public void drawGroupBorderDelete(ArrayList<IShape>shapeList, ArrayList<IShape>selectShapeList, ArrayList<ArrayList<IShape>> groupShapeListArray) {
+	//public void drawGroupBorderDelete(ArrayList<IShape>shapeList, ArrayList<IShape>selectShapeList, ArrayList<ArrayList<IShape>> groupShapeListArray) {
+//
+//		int selectListCount = selectShapeList.size();
 
-		int selectListCount = selectShapeList.size();
+//		System.out.println(selectListCount);
 
-		System.out.println(selectListCount);
+//		blankCanvas(paintCanvas);
 
-		blankCanvas(paintCanvas);
+//		for (IShape shape: shapeList) {
 
-		for (IShape shape: shapeList) {
+//			int startX = shape.getStartX();
+//			int startY = shape.getStartY();
+//			int endX = shape.getEndX();
+//			int endY = shape.getEndY();
+//			int height = shape.getHeight();
+//			int width = shape.getWidth();
 
-			int startX = shape.getStartX();
-			int startY = shape.getStartY();
-			int endX = shape.getEndX();
-			int endY = shape.getEndY();
-			int height = shape.getHeight();
-			int width = shape.getWidth();
+//			shape.draw(paintCanvas, startX, startY, endX, endY, height, width);
+//		}
 
-			shape.draw(paintCanvas, startX, startY, endX, endY, height, width);
-		}
+	//	ArrayList<Integer>startXList = new ArrayList<Integer>();
+	//	ArrayList<Integer>startYList = new ArrayList<Integer>();
+	//	ArrayList<Integer>endXList = new ArrayList<Integer>();
+	//	ArrayList<Integer>endYList = new ArrayList<Integer>();
 
-		ArrayList<Integer>startXList = new ArrayList<Integer>();
-		ArrayList<Integer>startYList = new ArrayList<Integer>();
-		ArrayList<Integer>endXList = new ArrayList<Integer>();
-		ArrayList<Integer>endYList = new ArrayList<Integer>();
+	//	for (ArrayList<IShape> groupArray: groupShapeListArray) {
 
-		for (ArrayList<IShape> groupArray: groupShapeListArray) {
+	//		for (IShape shape: groupArray) {
+	//			startXList.add(shape.getStartX());
+	//			startYList.add(shape.getStartY());
+	//			endXList.add(shape.getEndX());
+	//			endYList.add(shape.getEndY());
+	//		}	
+	//		int xStart = Collections.min(startXList)-5;
+	//		int yStart = Collections.min(startYList)-5;
+	//		int xEnd = Collections.max(endXList)+5;
+	//		int yEnd = Collections.max(endYList)+5;
+	//		int groupWidth = xEnd-xStart;
+	//		int groupHeight = yEnd-yStart;
 
-			for (IShape shape: groupArray) {
-				startXList.add(shape.getStartX());
-				startYList.add(shape.getStartY());
-				endXList.add(shape.getEndX());
-				endYList.add(shape.getEndY());
-			}	
-			int xStart = Collections.min(startXList)-5;
-			int yStart = Collections.min(startYList)-5;
-			int xEnd = Collections.max(endXList)+5;
-			int yEnd = Collections.max(endYList)+5;
-			int groupWidth = xEnd-xStart;
-			int groupHeight = yEnd-yStart;
+	//		startXList.clear();
+	//		startYList.clear();
+	//		endXList.clear();
+	//		endYList.clear();
 
-			startXList.clear();
-			startYList.clear();
-			endXList.clear();
-			endYList.clear();
-
-			Graphics2D graphics2d = paintCanvas.getGraphics2D();
+			//Graphics2D graphics2d = paintCanvas.getGraphics2D();
 			
-			graphics2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0));
-			graphics2d.setColor(Color.ORANGE);
-			graphics2d.drawRect(xStart, yStart, groupWidth, groupHeight);
-			}
-		}
+			//graphics2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0));
+			//graphics2d.setColor(Color.ORANGE);
+			//graphics2d.drawRect(xStart, yStart, groupWidth, groupHeight);
+	//		}
+	//	}
 }
 

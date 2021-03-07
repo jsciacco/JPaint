@@ -23,7 +23,6 @@ public class UngroupCommand implements ICommand, IUndoable{
 		// TODO Auto-generated method stub
 		groupShapeList = ShapeList.getSelect();
 		ShapeList.groupList(groupShapeList);
-		CommandHistory.add(this);
 	}
 
 	@Override

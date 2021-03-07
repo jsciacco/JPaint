@@ -2,6 +2,7 @@ package model;
 
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import controller.myPoint;
 import model.interfaces.IApplicationState;
@@ -37,23 +38,57 @@ public class ShapeList implements IShapeList{
 	}
 
 	public void checkList(myPoint startPoint, myPoint endPoint) {
+		
 		selectShapeList.clear();
 		deletedGroupList.clear();
+		
+		ArrayList<Integer>startXList = new ArrayList<Integer>();
+		ArrayList<Integer>startYList = new ArrayList<Integer>();
+		ArrayList<Integer>endXList = new ArrayList<Integer>();
+		ArrayList<Integer>endYList = new ArrayList<Integer>();
+		ArrayList<IShape>groupList = new ArrayList<IShape>();
+		
 		for (IShape shape: shapeList) {
+			
 			if (startPoint.getX() < shape.getEndX() && endPoint.getX() > shape.getStartX() &&
 					startPoint.getY() < shape.getEndY() && endPoint.getY() > shape.getStartY()) {
 				selectShapeList.add(shape);
 			}
+			
 			for (ArrayList<IShape> groupArray: groupShapeListArray) {
-				if (groupArray.contains(shape) && selectShapeList.contains(shape)) {
-					for (IShape groupShape: groupArray){
-						if (!selectShapeList.contains(groupShape)) {
-						selectShapeList.add(groupShape);
-						}
-					}
+				
+				for (IShape groupShape: groupArray){
+					startXList.add(groupShape.getStartX());
+					startYList.add(groupShape.getStartY());
+					endXList.add(groupShape.getEndX());
+					endYList.add(groupShape.getEndY());
 				}
-			}
+				
+				int xStart = Collections.min(startXList)-5;
+				int yStart = Collections.min(startYList)-5;
+				int xEnd = Collections.max(endXList)+5;
+				int yEnd = Collections.max(endYList)+5;
+					
+				startXList.clear();
+				startYList.clear();
+				endXList.clear();
+				endYList.clear();
+				
+				if (groupArray.contains(shape) && startPoint.getX() < xEnd && endPoint.getX() > xStart &&
+					startPoint.getY() < yEnd && endPoint.getY() > yStart) {
+					selectShapeList.add(shape);
+				}
+				
+				//if (groupArray.contains(shape) && selectShapeList.contains(shape)) {
+				//	for (IShape newShape: groupArray){
+				//		if (!selectShapeList.contains(newShape)) {
+				//			selectShapeList.add(newShape);
+				//		}
+				//	}
+				//}
+			}					
 		}
+		
 		if (!groupShapeListArray.isEmpty()) {
 			shapeDraw.drawGroupBorder(shapeList, selectShapeList, groupShapeListArray);
 		}
@@ -86,12 +121,12 @@ public class ShapeList implements IShapeList{
 			}
 		}
 		if (!groupShapeListArray.isEmpty()) {
-			if (!deletedGroupList.isEmpty()) {
-				shapeDraw.drawGroupBorderDelete(shapeList, selectShapeList, groupShapeListArray);
-			}
-			else {
+			//if (!deletedGroupList.isEmpty()) {
+			//	shapeDraw.drawGroupBorderDelete(shapeList, selectShapeList, groupShapeListArray);
+			//}
+			//else {
 			shapeDraw.drawGroupBorder(shapeList, selectShapeList, groupShapeListArray);
-			}
+			//}
 		}
 		else {
 		shapeDraw.drawBorder(shapeList, selectShapeList);
@@ -126,12 +161,12 @@ public class ShapeList implements IShapeList{
 			}
 			groupShapeListArray.remove(deleteList);
 		}
-		if (!groupShapeListArray.isEmpty()) {
-			shapeDraw.drawGroupBorderDelete(shapeList, selectShapeList, groupShapeListArray);
-		}
-		else {
+		//if (!groupShapeListArray.isEmpty()) {
+		//	shapeDraw.drawGroupBorderDelete(shapeList, selectShapeList, groupShapeListArray);
+		//}
+		//else {
 			shapeDraw.reDraw(shapeList);
-		}
+		//}
 	}
 	
 	public static void undoDelete(ArrayList<IShape> deleteCopy) {
@@ -142,11 +177,11 @@ public class ShapeList implements IShapeList{
 			if (deletedGroupList.contains(shape)) {
 				deleteList.add(shape);
 			}
-			if (!deleteList.isEmpty()) {
-				groupShapeListArray.add(deleteList);
-			}
-			System.out.println(listCount);
 		}
+		if (!deleteList.isEmpty()) {
+			groupShapeListArray.add(deleteList);
+		}
+		System.out.println(listCount);
 		if (!groupShapeListArray.isEmpty()) {
 			shapeDraw.drawGroupBorder(shapeList, selectShapeList, groupShapeListArray);
 		}
@@ -174,7 +209,11 @@ public class ShapeList implements IShapeList{
 		for (IShape shape: groupList) {
 			groupShapeList.add(shape);
 		}
-		groupShapeListArray.remove(groupShapeList);
+		if (groupShapeListArray.contains(groupShapeList)) {
+			System.out.println("contains selected shapes");	
+			groupShapeListArray.remove(groupShapeList);
+		}
+		
 		System.out.println(groupShapeListArray.size());
 		
 		if (!groupShapeListArray.isEmpty()) {
@@ -183,7 +222,6 @@ public class ShapeList implements IShapeList{
 		else {
 			shapeDraw.drawBorder(shapeList, selectShapeList);
 		}
-		
 	}
 	
 	public static void addShape(IShape shape) {
