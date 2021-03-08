@@ -184,36 +184,4 @@ public class Triangle implements IShape {
 		graphics2d.setColor(Color.BLACK);
 		graphics2d.drawPolygon(xArray, yArray, 3);
 	}
-	
-
-
-	// Filled in rectangle
-	//Graphics2D graphics2d = paintCanvas.getGraphics2D();
-	//graphics2d.setColor(Color.GREEN);
-	//graphics2d.fillRect(12, 13, 200, 400);
-
-	// Outlined rectangle
-	//graphics2d.setStroke(new BasicStroke(5));
-	//graphics2d.setColor(Color.BLUE);
-	//graphics2d.drawRect(12, 13, 200, 400);
-
-	// Selected Shape
-	//Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
-	//graphics2d.setStroke(stroke);
-	//graphics2d.setColor(Color.BLACK);
-	//graphics2d.drawRect(7, 8, 210, 410);
-
-	// if outline only, graphics2d.draw, if filled in, graphics2d.draw
 }
-
-//recommendation right triangle
-
-//three parameters : x array y array number of points (3)
-//xarray[3] = 10(startpointx),40(endpoint x),10(startpoint x)
-//yarray[3] = 30(startpoint y),50(endpoint y),50(endpoint y)
-//drawpolygon(x,y,3)
-//startpoint x, endpoint y = 3rd point in array
-
-//mapping colors, 1st way public static switch statements, 2nd way enum map
-//EnumMap<ShapeColor, java.awt.Color> map = new EnumMap<ShapeColor, Color>(ShapeColor.class);
-//Can put in main, then pass around -> map.put(ShapeColor.BLUE, Color.Blue);

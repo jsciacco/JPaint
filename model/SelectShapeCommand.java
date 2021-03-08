@@ -171,7 +171,4 @@ public class SelectShapeCommand implements ICommand, IUndoable, IShape{
 		// TODO Auto-generated method stub
 		
 	}
-
 }
-
-//collision detection algorithm: only needs to intersect, not contain

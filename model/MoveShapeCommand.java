@@ -173,9 +173,4 @@ public class MoveShapeCommand implements ICommand, IUndoable, IShape{
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
-
 }

@@ -46,7 +46,6 @@ public class ShapeList implements IShapeList{
 		ArrayList<Integer>startYList = new ArrayList<Integer>();
 		ArrayList<Integer>endXList = new ArrayList<Integer>();
 		ArrayList<Integer>endYList = new ArrayList<Integer>();
-		ArrayList<IShape>groupList = new ArrayList<IShape>();
 		
 		for (IShape shape: shapeList) {
 			
@@ -78,14 +77,6 @@ public class ShapeList implements IShapeList{
 					startPoint.getY() < yEnd && endPoint.getY() > yStart) {
 					selectShapeList.add(shape);
 				}
-				
-				//if (groupArray.contains(shape) && selectShapeList.contains(shape)) {
-				//	for (IShape newShape: groupArray){
-				//		if (!selectShapeList.contains(newShape)) {
-				//			selectShapeList.add(newShape);
-				//		}
-				//	}
-				//}
 			}					
 		}
 		
@@ -121,12 +112,7 @@ public class ShapeList implements IShapeList{
 			}
 		}
 		if (!groupShapeListArray.isEmpty()) {
-			//if (!deletedGroupList.isEmpty()) {
-			//	shapeDraw.drawGroupBorderDelete(shapeList, selectShapeList, groupShapeListArray);
-			//}
-			//else {
 			shapeDraw.drawGroupBorder(shapeList, selectShapeList, groupShapeListArray);
-			//}
 		}
 		else {
 		shapeDraw.drawBorder(shapeList, selectShapeList);
@@ -161,12 +147,7 @@ public class ShapeList implements IShapeList{
 			}
 			groupShapeListArray.remove(deleteList);
 		}
-		//if (!groupShapeListArray.isEmpty()) {
-		//	shapeDraw.drawGroupBorderDelete(shapeList, selectShapeList, groupShapeListArray);
-		//}
-		//else {
 			shapeDraw.reDraw(shapeList);
-		//}
 	}
 	
 	public static void undoDelete(ArrayList<IShape> deleteCopy) {

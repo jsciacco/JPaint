@@ -37,7 +37,6 @@ public class CreateShapeCommand implements ICommand, IUndoable, IShape{
 		endY = endPoint.getY();
 		height = (endPoint.getY()-startPoint.getY());
 		width = (endPoint.getX()-startPoint.getX());
-		//shape = ShapeFactory.shapeWorks(appState, startPoint, endPoint);
 		shapeType = appState.getActiveShapeType();
 		System.out.println(shapeType);
 		primaryColor = appState.getActivePrimaryColor();

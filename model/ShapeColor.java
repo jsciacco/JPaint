@@ -74,5 +74,3 @@ public enum ShapeColor {
 		return null;
 	}
 }
-
-// BLACK {public Color getColor(){ return Color.Black} } give all a method //
